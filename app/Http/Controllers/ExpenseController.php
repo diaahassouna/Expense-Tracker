@@ -48,7 +48,7 @@ class ExpenseController extends Controller
         $Expenses = $FixedExpenses + $VariableExpenses + $NonNecessitiesExpenses;
 
         //Calculte Output Data
-        $Balance = $Income - $expenses;
+        $Balance = $Income - $Expenses;
         
         return Expense::create($request->all());
     }
