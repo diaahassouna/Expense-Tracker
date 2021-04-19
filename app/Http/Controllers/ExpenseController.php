@@ -82,20 +82,34 @@ class ExpenseController extends Controller
      */
     function getBalance(Request $request, $id)
     {
+        //Fetch from stored data [store method]
+        
+        
         //Declare Input Data into this method
-        $MonthlyIncome = Expense::find($id)->$request->get('monthly_income');
-        $DailyIncome = Expense::find($id)->$request->get('daily_income');
-        $FixedExpenses = Expense::find($id)->$request->get('fixed_expenses');
-        $VariableExpenses = Expense::find($id)->$request->get('variable_expenses');
-        $NonNecessitiesExpenses = Expense::find($id)->$request->get('non_necessities_expenses');
-        $SavingPlanPercentage = Expense::find($id)->$request->get('saving_plan_percentage');
-        $Balance = Expense::find($id)->$request->get('balance');
+        $MonthlyIncome = $request->get('monthly_income', 5000);
+        $DailyIncome = $request->get('daily_income', 100);
+        $FixedExpenses = $request->get('fixed_expenses', 2500);
+        $VariableExpenses = $request->get('variable_expenses', 150);
+        $NonNecessitiesExpenses = $request->get('non_necessities_expenses', 100);
+        $SavingPlanPercentage = $request->get('saving_plan_percentage', 20);
+        $Balance = $request->get('balance');
 
         $Income = $MonthlyIncome + $DailyIncome;
         $Expenses = $FixedExpenses + $VariableExpenses + $NonNecessitiesExpenses;
 
-        //Calculte Output Data
+        //Calculate Output Data
         $Balance = $Income - $Expenses;
 
-        return Expense::update($Balance);
+        //Create updated data as array
+        $data = Expense::find($id)->update([
+            'monthly_income' => $MonthlyIncome,
+            'daily_income' => $DailyIncome,
+            'fixed_expenses' => $FixedExpenses,
+            'variable_expenses' => $VariableExpenses,
+            'non_necessities_expenses' => $NonNecessitiesExpenses,
+            'saving_plan_percentage' => $SavingPlanPercentage,
+            'balance' => $Balance
+        ]);
+
+        return $data;
     }
