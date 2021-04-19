@@ -86,7 +86,7 @@ class ExpenseController extends Controller
         
         
         //Declare Input Data into this method
-        $MonthlyIncome = $request->get('monthly_income', 5000);
+        $MonthlyIncome = $request->get('monthly_income', 4000);
         $DailyIncome = $request->get('daily_income', 100);
         $FixedExpenses = $request->get('fixed_expenses', 2500);
         $VariableExpenses = $request->get('variable_expenses', 150);
