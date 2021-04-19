@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Expense;
 
 class CreateExpensesTable extends Migration
 {
@@ -22,7 +23,7 @@ class CreateExpensesTable extends Migration
             $table->float('variable_expenses');
             $table->float('non_necessities_expenses');
             $table->float('saving_plan_percentage');
-            $table->float('balance');
+            $table->float('balance')->default(0);
         });
     }
 

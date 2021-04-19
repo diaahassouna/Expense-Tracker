@@ -15,6 +15,7 @@ class Expense extends Model
         'variable_expenses',
         'non_necessities_expenses',
         'saving_plan_percentage',
-        'balance',
+        'balance'
     ];
+
 }
