@@ -82,23 +82,17 @@ class ExpenseController extends Controller
      */
     function getBalance(Request $request, $id)
     {
-        //Fetch from stored data [store method]
-        
-        
         //Declare Input Data into this method
-        $MonthlyIncome = $request->get('monthly_income', 4000);
-        $DailyIncome = $request->get('daily_income', 100);
-        $FixedExpenses = $request->get('fixed_expenses', 2500);
-        $VariableExpenses = $request->get('variable_expenses', 150);
-        $NonNecessitiesExpenses = $request->get('non_necessities_expenses', 100);
-        $SavingPlanPercentage = $request->get('saving_plan_percentage', 20);
-        $Balance = $request->get('balance');
-
-        $Income = $MonthlyIncome + $DailyIncome;
-        $Expenses = $FixedExpenses + $VariableExpenses + $NonNecessitiesExpenses;
+        $MonthlyIncome = Expense::find($id)->value('monthly_income');
+        $DailyIncome = Expense::find($id)->value('daily_income');
+        $FixedExpenses = Expense::find($id)->value('fixed_expenses');
+        $VariableExpenses = Expense::find($id)->value('variable_expenses');
+        $NonNecessitiesExpenses = Expense::find($id)->value('non_necessities_expenses');
+        $SavingPlanPercentage = Expense::find($id)->value('saving_plan_percentage');
+        $Balance = Expense::find($id)->value('balance');
 
         //Calculate Output Data
-        $Balance = $Income - $Expenses;
+        $Balance = $MonthlyIncome + $DailyIncome - ($FixedExpenses + $VariableExpenses + $NonNecessitiesExpenses);
 
         //Create updated data as array
         $data = Expense::find($id)->update([
