@@ -34,7 +34,8 @@ class ExpenseController extends Controller
             'saving_plan_percentage' => 'required',
         ]);
 
-        return Expense::create($request->all());
+        Expense::create($request->all());
+        return getBalance($request, $id);
     }
 
     /**
@@ -57,8 +58,8 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        getBalance($request, $id);
-        return Expense::find($id)->update($request->all());
+        Expense::find($id)->update($request->all());
+        return getBalance($request, $id); 
     }
 
     /**
@@ -83,13 +84,13 @@ class ExpenseController extends Controller
     function getBalance(Request $request, $id)
     {
         //Declare Input Data into this method
-        $MonthlyIncome = Expense::find($id)->value('monthly_income');
-        $DailyIncome = Expense::find($id)->value('daily_income');
-        $FixedExpenses = Expense::find($id)->value('fixed_expenses');
-        $VariableExpenses = Expense::find($id)->value('variable_expenses');
-        $NonNecessitiesExpenses = Expense::find($id)->value('non_necessities_expenses');
-        $SavingPlanPercentage = Expense::find($id)->value('saving_plan_percentage');
-        $Balance = Expense::find($id)->value('balance');
+        $MonthlyIncome = Expense::where('id', $id)->value('monthly_income');
+        $DailyIncome = Expense::where('id', $id)->value('daily_income');
+        $FixedExpenses = Expense::where('id', $id)->value('fixed_expenses');
+        $VariableExpenses = Expense::where('id', $id)->value('variable_expenses');
+        $NonNecessitiesExpenses = Expense::where('id', $id)->value('non_necessities_expenses');
+        $SavingPlanPercentage = Expense::where('id', $id)->value('saving_plan_percentage');
+        $Balance = Expense::where('id', $id)->value('balance');
 
         //Calculate Output Data
         $Balance = $MonthlyIncome + $DailyIncome - ($FixedExpenses + $VariableExpenses + $NonNecessitiesExpenses);
