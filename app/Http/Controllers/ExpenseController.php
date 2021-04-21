@@ -34,7 +34,8 @@ class ExpenseController extends Controller
             'saving_plan_percentage' => 'required',
         ]);
 
-        Expense::create($request->all());
+        $data = Expense::create($request->all());
+        $id = $data->id;
         return getBalance($request, $id);
     }
 
