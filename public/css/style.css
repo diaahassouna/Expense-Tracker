@@ -6,4 +6,14 @@ body {
 div {
     text-align: center;
     background-color: burlywood;
+    margin: 2em;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    background-color: brown;
+    margin: 10em;
+    border-color: black;
+    border-style: solid;
+    height: 18em;
 }
