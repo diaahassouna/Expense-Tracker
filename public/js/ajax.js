@@ -1,8 +1,8 @@
 //Create, Read, Update, and Delete Data DOM grapping 
 document.getElementById('button').addEventListener('click', createData); //Create
 document.getElementById('button').addEventListener('click', getData); //Read
-document.getElementById('button').addEventListener('click', updateData); //Update
-document.getElementById('button').addEventListener('click', deleteData); //Delete
+/*document.getElementById('button').addEventListener('click', updateData); //Update
+document.getElementById('button').addEventListener('click', deleteData); //Delete*/
 
 //CRUD functions
 
