@@ -9,18 +9,28 @@ document.getElementById('button').addEventListener('click', deleteData); //Delet
 //Create API Data
 function createData() {
     var xhr = new XMLHttpRequest();
+    var fd = new FormData(form);
+    
     xhr.open('POST', 'api/expense', true);
 
     xhr.onload = function(){
         if(this.status == 200){
             var response = JSON.parse(this.responseText);
             console.log(response);
+        } else {
+            console.log("error")
         }
     }
 
-    xhr.send();
-
+    xhr.send(fd);
 }
+
+    var form = document.getElementById("create_form");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        createData();
+    })
 
 //Read API Data
 function getData() {

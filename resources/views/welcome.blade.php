@@ -16,7 +16,7 @@
             <button id="button">Get API Data</button>
         </div>
         <div class="container">
-            <form action="{{ route('expense.store') }}" method="post" id="form">
+            <form id="create_form">
                 @csrf
                 <label for="monthly_income">Monthly Income:</label><br>
                 <input type="text"  id="monthly_income" name="monthly_income"><br>
