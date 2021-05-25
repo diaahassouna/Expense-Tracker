@@ -17,7 +17,38 @@
         </div>
         <div class="container">
             <form id="create_form">
+                <div>
+                    <article>
+                        Create
+                    </article>
+                </div>
                 @csrf
+                <label for="monthly_income">Monthly Income:</label><br>
+                <input type="text"  id="monthly_income" name="monthly_income"><br>
+                <label for="daily_income">Daily Income:</label><br>
+                <input type="text" id="daily_income" name="daily_income"><br>
+                <label for="fixed_expenses">Fixed Expenses:</label><br>
+                <input type="text" id="fixed_expenses" name="fixed_expenses"><br>
+                <label for="variable_expenses">Variable Expenses:</label><br>
+                <input type="text" id="variable_expenses" name="variable_expenses"><br>
+                <label for="non_necessities_expenses">Non Necessities:</label><br>
+                <input type="text" id="non_necessities_expenses" name="non_necessities_expenses"><br>
+                <label for="saving_plan_percentage">Saving Plan Percentage:</label><br>
+                <input type="text" id="saving_plan_percentage" name="saving_plan_percentage"><br>
+                <div class="container">
+                    <button type="submit" id="submit" value="Submit">Get Your Results</button>
+                </div>
+            </form>
+        </div>
+        <div class="container">
+            <form id="update_form">
+                @method('PUT')
+                @csrf
+                <div>
+                    <article>
+                        Update
+                    </article>
+                </div>
                 <label for="monthly_income">Monthly Income:</label><br>
                 <input type="text"  id="monthly_income" name="monthly_income"><br>
                 <label for="daily_income">Daily Income:</label><br>
