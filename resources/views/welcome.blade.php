@@ -67,6 +67,9 @@
             </form>
         </div>
         <div>
+            <button id="delete_button">Delete Data</button>
+        </div>
+        <div>
             <script src="{{ url('/js/ajax.js') }}"></script>
         </div>
     </div>

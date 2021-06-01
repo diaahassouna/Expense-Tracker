@@ -75,3 +75,30 @@ update_form.addEventListener("submit", function (event) {
     event.preventDefault();
     updateData();
 })
+
+//Delete API Data
+function DeleteData() {
+    var xhr = new XMLHttpRequest();
+    var uri = 'api/expense/14';
+    
+    xhr.open('DELETE', uri, true);
+
+    xhr.onload = function(){
+        if(this.status == 200){
+            var response = JSON.parse(this.responseText);
+            console.log(response);
+            console.log(uri);
+        } else {
+            console.log("error")
+        }
+    }
+
+    xhr.send();
+}
+
+var update_form = document.getElementById("delete_button");
+
+update_form.addEventListener("click", function (event) {
+    event.preventDefault();
+    DeleteData();
+})
